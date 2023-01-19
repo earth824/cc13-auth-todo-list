@@ -22,9 +22,10 @@ exports.createTodo = async (req, res, next) => {
     }
     // 2. save data to database
     value.userId = req.user.id;
-    await Todo.create(value);
+    // { id, title, completed, userId, createdAt, uodatedAt }
+    const todo = await Todo.create(value);
     // 3. sent response
-    res.status(201).json({ message: 'create todo success' });
+    res.status(201).json({ todo });
   } catch (err) {
     next(err);
   }
