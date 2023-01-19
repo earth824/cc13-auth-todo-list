@@ -3,6 +3,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 const authRoute = require('./routes/auth-route');
 const todoRoute = require('./routes/todo-route');
@@ -11,6 +12,9 @@ const errorMiddleware = require('./middlewares/error');
 const authenticateMiddleware = require('./middlewares/authenticate');
 
 const app = express();
+
+// cors middleware: set response header to allow cross origin
+app.use(cors());
 
 // body-parser middleware
 app.use(express.json());
